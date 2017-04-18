@@ -10,6 +10,7 @@
 	        </md-input-container>
 	        <md-button type="submit" class="md-raised md-primary no-margin-top">Reverse!</md-button>
 	        <p class="error-message" ng-if="errorMessage">{{errorMessage}}</p>
+	        <p class="in-progress" ng-if="status.inProgress">reversing...</p>
 	        <p class="success-message" ng-if="successfulReverse">Gif reversed successfully</p>
 		</form>
 	</div>
