@@ -1,6 +1,10 @@
 app.controller('GifReverserController', ['$scope', 'GifReverserService', function($scope, GifReverserService) {
     var vm = this;
 
+    // status message
+    $scope.errorMessage = false;
+    $scope.successfulReverse = false
+
     vm.init = function() {
         // init controller here
     };
@@ -11,9 +15,12 @@ app.controller('GifReverserController', ['$scope', 'GifReverserService', functio
     	};
 
     	GifReverserService.reverseGif(params, function(result){
-    		console.log(result);
+            $scope.errorMessage = false;
+            $scope.successfulReverse = true;
     	}, function(error) {	
-    		console.error(error);
+    		if (error && error.data && error.data.message) {
+                $scope.errorMessage = error.data.message;
+            }
     	});
     };
 
