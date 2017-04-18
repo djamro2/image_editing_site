@@ -1,0 +1,56 @@
+<div ng-controller="HomePageController">
+    <navbar></navbar>
+    <div class="main-content">
+        <div class="jumbotron-container">
+            <div class="jumbotron-image"></div>
+            <div class="image-overlay"></div>
+            <div class="jumbotron-content">
+                <p>Premium Data Acquisition Software and Consulting</p>
+                <div class="simple-button" ng-click="scrollToTools()">
+                    See Tools and Projects
+                </div>
+            </div>
+        </div>
+        <div class="tools" id="tools">
+            <h2 class="tools-header">Tools</h2>
+            <div class="tools-list">
+                <div class="tool-item">
+                    <a href="/gif_reverser">
+                        <img src="/images/data_higgs.png" alt="Gif Reverser">
+                    </a>
+                    <a href="/gif_reverser">
+                        <div class="tool-item-title">
+                            Gif Reverser
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="projects">
+            <h2 class="projects-header">Projects</h2>
+            <div class="projects-list">
+                more to come
+            </div>
+        </div>
+        <form class="contact" ng-submit="sendContactMessage(contactInfo)">
+            <h2 class="contact-header">Contact / Get a Quote</h2>
+            <div class="contact-form">
+                <div class="form-input-row">
+                    Name:
+                    <input class="simple-input" ng-model="contactInfo.name" type="text" ng-required="true" />
+                </div>
+                <div class="form-input-row">
+                    Email:
+                    <input class="simple-input" ng-model="contactInfo.email" type="email"/>
+                </div>
+                <div class="form-input-row">
+                    <p class="message-header">Message:</p>
+                    <textarea class="simple-textarea" ng-model="contactInfo.message" type="text" rows="5" cols="32"></textarea>
+                </div>
+                <button type="submit" class="simple-button simple-button-black contact-button">
+                    Send
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

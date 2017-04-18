@@ -1,0 +1,236 @@
+
+/* tags */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Catamaran', sans-serif;
+}
+
+/* id's */
+
+/* reusable classes */
+
+.black {
+    color: black!important;
+}
+
+.margin-bottom-8 {
+    margin-bottom: 8px;
+}
+
+.no-margin {
+    margin: 0!important;
+}
+
+.no-padding {
+    padding: 0!important;
+}
+
+/* element level classes */
+
+.contact .contact-form .contact-button {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.contact .contact-form .message-header {
+    margin: 0 0 8px 0;
+}
+
+.form-input-row {
+    padding-bottom: 1rem;
+}
+
+.jumbotron-container .image-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.jumbotron-container .jumbotron-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/data_waterfall.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.jumbotron-container .jumbotron-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 2.5em;
+    height: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.main-content .jumbotron-container {
+    position: relative;
+    height: 20rem;
+    width: 100%;
+}
+
+.navbar {
+    height: 45px;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+.navbar .navbar-content {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .navbar-content .navbar-content-left {
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.navbar .navbar-content .navbar-content-right {
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.navbar .navbar-content .navbar-content-left:focus {
+    outline: none;
+}
+
+.navbar .navbar-content .logo {
+    font-weight: 700;
+    font-size: 1.3em;
+    letter-spacing: .5em;
+}
+
+.projects {
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #666;
+}
+
+.simple-button {
+    margin-bottom: 4rem;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-size: medium;
+    padding: .4rem;
+}
+
+.simple-button:hover {
+    cursor: pointer;
+}
+
+.simple-button:focus {
+    outline: none;
+}
+
+.simple-button-black {
+    color: black;
+    border: 2px solid black;
+}
+
+.simple-input {
+    margin-left: 1rem;
+    margin-bottom: 2px;
+    border: none;
+    padding-bottom: 0;
+    border-bottom: 2px solid #aaa;
+}
+
+.simple-input:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.simple-textarea {
+    border-bottom: 2px solid #aaa;
+}
+
+
+.simple-textarea:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.tools {
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #666;
+}
+
+.tools .tool-item {
+    width: 12rem;
+    height: 14rem;
+    border: 2px solid #aaa;
+    position: relative;
+}
+
+.tools .tool-item:hover {
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.tools .tool-item a {
+    width: inherit;
+    height: inherit;
+}
+
+.tools .tool-item a img {
+    width: inherit;
+    height: inherit;
+}
+
+.tools .tool-item .tool-item-title {
+    width: inherit;
+    height: 3rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+}
+
+/* anything smaller than 966px */
+@media(max-width: 970px) {
+    .tools, .projects, .contact {
+        padding-left: 10px;
+    }
+}

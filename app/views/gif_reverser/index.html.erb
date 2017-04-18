@@ -1,0 +1,14 @@
+
+<div class="gif-reverser" ng-controller="GifReverserController">
+	<navbar></navbar>
+	<div class="gif-reverse-input-box md-whiteframe-6dp">
+		<form layout="column" layout-align="center center" ng-submit="reverseGif(gifUrl)">
+			<p>Copy and paste the gif url below to reverse the gif</p>
+			<md-input-container class="no-margin-bottom">
+	        	<label>Gif URL</label>
+	        	<input ng-model="gifUrl" ng-required="true">
+	        </md-input-container>
+	        <md-button type="submit" class="md-raised md-primary">Reverse!</md-button>
+		</form>
+	</div>
+</div>
