@@ -22,6 +22,7 @@ app.controller('GifReverserController', ['$scope', 'GifReverserService', functio
             $scope.errorMessage = false;
             $scope.status.inProgress = false;
             $scope.successfulReverse = true;
+            console.log(result);
     	}, function(error) {	
             $scope.status.inProgress = false;
     		if (error && error.data && error.data.message) {

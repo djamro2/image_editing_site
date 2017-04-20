@@ -5,10 +5,6 @@
 require "open-uri"
 require "securerandom"
 
-def delete_file(filename)
-
-end
-
 def download_gif(url, name="output")
 	open(url) { |f|
 
@@ -32,10 +28,19 @@ def get_random_string
 	return SecureRandom.urlsafe_base64 8
 end
 
+def get_s3_url(raw_name, file_extension)
+	return "https://s3.amazonaws.com/image-editor-site/reversed_gifs/#{raw_name}_reversed#{file_extension}"
+end
+
 def run_reverse_command(raw_name, file_extension)
 	filename_normal = raw_name + file_extension
 	filename_reversed = raw_name + "_reversed" + file_extension
-	system "convert #{filename_normal} -coalesce -reverse  -quiet -layers OptimizePlus  -loop 0 #{filename_reversed}"
+	system "convert #{filename_normal} -coalesce -reverse  -quiet -layers OptimizePlus  -loop 0 #{filename_reversed} && rm #{filename_normal}"
+end
+
+def upload_to_s3(raw_name, file_extension)
+	filename_reversed = raw_name + "_reversed" + file_extension
+	system "aws s3 mv #{filename_reversed} s3://image-editor-site/reversed_gifs/#{filename_reversed}"
 end
 
 def validate_url(gif_url)
@@ -75,11 +80,10 @@ class GifReverserController < ApplicationController
 		run_reverse_command raw_name, file_extension
 
 		# upload to S3
-
-		# delete the file
+		upload_to_s3 raw_name, file_extension
 
 		# return message
-		msg = {:response => "OK"}
+		msg = {:response => "OK", :id => raw_name, :url => get_s3_url(raw_name, file_extension)}
 		render :json => msg
 	end
 
