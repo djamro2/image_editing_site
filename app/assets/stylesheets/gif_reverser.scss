@@ -5,5 +5,28 @@
 .gif-reverse-input-box {
 	max-width: 960px;
 	margin: 25px auto;
+	margin-top: 35px;
 	padding: 10px;
+}
+
+.gif-wrapper {
+	margin: 25px auto;
+	padding: 15px 25px;
+	min-height: 480px;
+	max-width: 930px;
+	text-align: center;
+	position: relative;
+}
+
+.gif-wrapper img {
+	max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
 }

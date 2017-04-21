@@ -1,17 +1,20 @@
 
 <div class="gif-reverser" ng-controller="GifReverserController">
 	<navbar></navbar>
+	<div class="gif-wrapper md-whiteframe-6dp" ng-if="gifReversedUrl">
+		<img ng-src="{{gifReversedUrl}}" /> 
+	</div>
 	<div class="gif-reverse-input-box md-whiteframe-6dp">
-		<form layout="column" layout-align="center center" ng-submit="reverseGif(gifUrl)">
-			<p>Copy and paste the gif url below to reverse the gif</p>
+		<form layout="column" layout-align="center center" ng-submit="reverseGif(gifSourceUrl)">
+			<p>Source gif url:</p>
 			<md-input-container class="no-margin-bottom">
-	        	<label>Gif URL</label>
-	        	<input ng-model="gifUrl" ng-required="true">
+	        	<label>URL</label>
+	        	<input ng-model="gifSourceUrl" ng-required="true">
 	        </md-input-container>
 	        <md-button type="submit" class="md-raised md-primary no-margin-top">Reverse!</md-button>
-	        <p class="error-message" ng-if="errorMessage">{{errorMessage}}</p>
+	        <p class="error-message" ng-if="status.errorMessage">{{errorMessage}}</p>
 	        <p class="in-progress" ng-if="status.inProgress">reversing...</p>
-	        <p class="success-message" ng-if="successfulReverse">Gif reversed successfully</p>
+	        <p class="success-message" ng-if="status.successfulReverse && !status.inProgress">Gif reversed successfully</p>
 		</form>
 	</div>
 </div>

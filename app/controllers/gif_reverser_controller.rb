@@ -35,7 +35,7 @@ end
 def run_reverse_command(raw_name, file_extension)
 	filename_normal = raw_name + file_extension
 	filename_reversed = raw_name + "_reversed" + file_extension
-	system "convert #{filename_normal} -coalesce -reverse  -quiet -layers OptimizePlus  -loop 0 #{filename_reversed} && rm #{filename_normal}"
+	system "convert #{filename_normal} -coalesce -reverse -quiet -layers OptimizePlus -loop 0 #{filename_reversed} && rm #{filename_normal}"
 end
 
 def upload_to_s3(raw_name, file_extension)

@@ -1,32 +1,38 @@
 app.controller('GifReverserController', ['$scope', 'GifReverserService', function($scope, GifReverserService) {
     var vm = this;
 
-    // status message
-    $scope.errorMessage = false;
-    $scope.successfulReverse = false;
+    // status info
     $scope.status = {
-        inProgess: false
+        inProgess: false,
+        errorMessage: false,
+        successfulReverse: false
     };
+
+    // gif url, set to url of source gif to show to user
+    $scope.gifReversedUrl = false;
 
     vm.init = function() {
         // init controller here
     };
 
-    $scope.reverseGif = function(gifUrl) {
+    $scope.reverseGif = function(gifSourceUrl) {
         $scope.status.inProgress = true;
     	var params = {
-    		gif_url: gifUrl
+    		gif_url: gifSourceUrl
     	};
 
     	GifReverserService.reverseGif(params, function(result){
-            $scope.errorMessage = false;
+            // set new status info after successful complete
+            $scope.status.errorMessage = false;
             $scope.status.inProgress = false;
-            $scope.successfulReverse = true;
-            console.log(result);
+            $scope.status.successfulReverse = true;
+
+            // show the url
+            $scope.gifReversedUrl = result.url;
     	}, function(error) {	
             $scope.status.inProgress = false;
     		if (error && error.data && error.data.message) {
-                $scope.errorMessage = error.data.message;
+                $scope.status.errorMessage = error.data.message;
             }
     	});
     };
