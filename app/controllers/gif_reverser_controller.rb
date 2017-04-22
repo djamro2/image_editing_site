@@ -70,8 +70,21 @@ class GifReverserController < ApplicationController
 			render :status => 500, :json => error_msg and return
 		end
 
+		# see if we already reversed this gif
+		previouslyReversed = ReversedGif.find_by source_url: gif_url
+		if previouslyReversed and previouslyReversed[:status] == "done"
+			msg = {:response => "OK", 
+				   :id => previouslyReversed[:raw_name], 
+				   :url => previouslyReversed[:reversed_url]}
+			render :json => msg and return
+		end
+
 		# used for saving locally w/o name conflicts
 		raw_name = get_random_string
+
+		# save in database
+		reversedGif = ReversedGif.new(source_url: gif_url, views: 0, raw_name: raw_name)
+		reversedGif.save()
 
 		# download gif from url
 		file_extension = download_gif(gif_url, raw_name)
@@ -81,6 +94,11 @@ class GifReverserController < ApplicationController
 
 		# upload to S3
 		upload_to_s3 raw_name, file_extension
+
+		# update the row created in the database
+		reversedGif.status = "done"
+		reversedGif.reversed_url = get_s3_url(raw_name, file_extension)
+		reversedGif.save
 
 		# return message
 		msg = {:response => "OK", :id => raw_name, :url => get_s3_url(raw_name, file_extension)}

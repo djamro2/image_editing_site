@@ -12,7 +12,32 @@ app.controller('GifReverserController', ['$scope', 'GifReverserService', functio
     $scope.gifReversedUrl = false;
 
     vm.init = function() {
-        // init controller here
+        reversedGifId = vm.getParameterByName('id')
+        if (reversedGifId && reversedGifId !== '') {
+            $scope.gifReversedUrl = vm.getGifReversedUrl(reversedGifId)
+        }
+    };
+
+    /**
+     * Return the reversed url of gif, given an id
+     */
+    vm.getGifReversedUrl = function(gif_id) {
+        // assuming file extension for now (use database later)
+        return "https://s3.amazonaws.com/image-editor-site/reversed_gifs/" + gif_id + "_reversed.gif";
+    };
+
+    /**
+     * Get a parameter value by name
+     * http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+     */
+    vm.getParameterByName = function(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+        var results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
 
     $scope.reverseGif = function(gifSourceUrl) {

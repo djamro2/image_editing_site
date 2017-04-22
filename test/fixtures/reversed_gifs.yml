@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source_url: MyString
+  reversed_url: MyString
+  views: 1
+  created: 2017-04-21 14:53:50
+  status: MyString
+
+two:
+  source_url: MyString
+  reversed_url: MyString
+  views: 1
+  created: 2017-04-21 14:53:50
+  status: MyString

@@ -1,0 +1,2 @@
+class ReversedGif < ApplicationRecord
+end
