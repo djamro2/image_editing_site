@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422163815) do
+ActiveRecord::Schema.define(version: 20170423163113) do
 
   create_table "reversed_gifs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "source_url"
     t.string   "reversed_url"
-    t.integer  "views"
     t.string   "status",       default: "started"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false

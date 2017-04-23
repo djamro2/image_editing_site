@@ -12,7 +12,7 @@
 	        	<input ng-model="gifSourceUrl" ng-required="true">
 	        </md-input-container>
 	        <md-button type="submit" class="md-raised md-primary no-margin-top">Reverse!</md-button>
-	        <p class="error-message" ng-if="status.errorMessage">{{errorMessage}}</p>
+	        <p class="error-message" ng-if="status.errorMessage">{{status.errorMessage}}</p>
 	        <p class="in-progress" ng-if="status.inProgress">reversing...</p>
 	        <p class="success-message" ng-if="status.successfulReverse && !status.inProgress">Gif reversed successfully</p>
 		</form>

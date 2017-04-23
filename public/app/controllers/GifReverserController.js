@@ -53,7 +53,8 @@ app.controller('GifReverserController', ['$scope', 'GifReverserService', functio
             $scope.status.successfulReverse = true;
 
             // show the url
-            $scope.gifReversedUrl = result.url;
+            //$scope.gifReversedUrl = result.url;
+            window.location.search = 'id=' + result.raw_name;
     	}, function(error) {	
             $scope.status.inProgress = false;
     		if (error && error.data && error.data.message) {
