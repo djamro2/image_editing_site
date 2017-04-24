@@ -12,6 +12,11 @@ def change_gif_url(gif_url)
 	return gif_url
 end
 
+def convert_to_mp4 raw_name
+	system "ffmpeg -f gif -i #{raw_name}.gif #{raw_name}.mp4"
+	system "rm #{raw_name}.gif"
+end
+
 def download_gif(url, name="output", file_extension=".gif")
 	open(url) { |f|
 		filename = name + file_extension
@@ -27,17 +32,18 @@ def get_random_string
 	return SecureRandom.urlsafe_base64 8
 end
 
-def get_s3_url(raw_name, file_extension=".gif")
+def get_s3_url(raw_name, file_extension=".mp4")
 	return "https://s3.amazonaws.com/image-editor-site/reversed_gifs/#{raw_name}_reversed#{file_extension}"
 end
 
-def run_reverse_command(raw_name, file_extension=".gif")
+def run_reverse_command(raw_name, file_extension=".mp4")
 	filename_normal = raw_name + file_extension
 	filename_reversed = raw_name + "_reversed" + file_extension
-	system "convert #{filename_normal} -coalesce -reverse -quiet -layers OptimizePlus -loop 0 #{filename_reversed} && rm #{filename_normal}"
+	system "ffmpeg -i #{filename_normal} -vf reverse #{filename_reversed}"
+	system "rm #{filename_normal}"
 end
 
-def upload_to_s3(raw_name, file_extension=".gif")
+def upload_to_s3(raw_name, file_extension=".mp4")
 	filename_reversed = raw_name + "_reversed" + file_extension
 	system "aws s3 mv #{filename_reversed} s3://image-editor-site/reversed_gifs/#{filename_reversed}"
 end
@@ -97,7 +103,12 @@ class GifReverserController < ApplicationController
 		# download gif from url
 		download_gif(gif_url, raw_name)
 
-		# run command line to reverse downloaded file
+		# if it's not already an mp4, convert to mp4
+		if gif_url.index('.gif')
+			convert_to_mp4 raw_name
+		end
+
+		# run command line to reverse the mp4
 		run_reverse_command raw_name
 
 		# upload to S3

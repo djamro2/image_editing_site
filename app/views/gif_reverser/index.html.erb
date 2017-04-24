@@ -2,7 +2,10 @@
 <div class="gif-reverser" ng-controller="GifReverserController">
 	<navbar></navbar>
 	<div class="gif-wrapper md-whiteframe-6dp" ng-if="gifReversedUrl">
-		<img ng-src="{{gifReversedUrl}}" /> 
+		<video autoplay="autoplay" loop="loop">
+		    <source ng-src="{{gifReversedUrl | trusted}}" type="video/mp4">
+		    Your browser does not support the video tag.
+		</video>
 	</div>
 	<div class="gif-reverse-input-box md-whiteframe-6dp">
 		<form layout="column" layout-align="center center" ng-submit="reverseGif(gifSourceUrl)">

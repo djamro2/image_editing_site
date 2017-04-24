@@ -23,7 +23,7 @@ app.controller('GifReverserController', ['$scope', 'GifReverserService', functio
      */
     vm.getGifReversedUrl = function(gif_id) {
         // assuming file extension for now (use database later)
-        return "https://s3.amazonaws.com/image-editor-site/reversed_gifs/" + gif_id + "_reversed.gif";
+        return "https://s3.amazonaws.com/image-editor-site/reversed_gifs/" + gif_id + "_reversed.mp4";
     };
 
     /**
