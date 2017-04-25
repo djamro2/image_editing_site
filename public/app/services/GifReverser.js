@@ -4,6 +4,7 @@ app.factory('GifReverserService', function($resource){
         reverseGif: {
             method: 'POST',
             url: '/gif_reverser',
+            headers: {"Access-Control-Allow-Origin": "true"},
             isArray: false
         }
     });
