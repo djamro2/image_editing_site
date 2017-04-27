@@ -1,2 +1,2 @@
 
-var app = angular.module('datalok', ['ngRoute', 'ngResource', 'ngAnimate', 'ngAria', 'ngMaterial']);
+var app = angular.module('gifmage', ['ngRoute', 'ngResource', 'ngAnimate', 'ngAria', 'ngMaterial']);

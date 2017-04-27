@@ -13,7 +13,7 @@ def change_gif_url(gif_url)
 end
 
 def convert_to_mp4 raw_name
-	system "ffmpeg -f gif -i #{raw_name}.gif #{raw_name}.mp4"
+	system "ffmpeg -i #{raw_name}.gif -movflags faststart -pix_fmt yuv420p -vf \"scale=trunc(iw/2)*2:trunc(ih/2)*2\" #{raw_name}.mp4"
 	system "rm #{raw_name}.gif"
 end
 
